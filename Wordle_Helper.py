@@ -2,6 +2,8 @@ import pandas as pd
 
 from kivy.app import App
 from kivy.clock import Clock
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
 
 
 class Wordle_Helper(App):
@@ -63,7 +65,10 @@ class Wordle_Helper(App):
                 child.text = wordString[4-i]
                 i += 1
         else:
-            print('You messed Up!')
+            popup = Popup(size_hint_x=0.5,size_hint_y=0.5,title='',separator_height=0)
+            label = Label(text='That word is not 5 letters long\nOr you have entered too many words')
+            popup.add_widget(label)
+            popup.open()
 
 
         root.ids.WordInput.text = ''
