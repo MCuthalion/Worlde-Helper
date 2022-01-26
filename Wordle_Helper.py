@@ -13,7 +13,6 @@ class Wordle_HelperApp(App):
     def build(self):
         #work with a kivy file to build the gui
         pass
-        pass
 
     def List(self):
         #Generates the list of words still available, populates, and calls the Popup
