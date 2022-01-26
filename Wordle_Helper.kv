@@ -1,0 +1,52 @@
+# main.py
+#:import Factory kivy.factory.Factory
+#:import RiseInTransition kivy.uix.screenmanager.RiseInTransition
+
+
+#Popup:
+#    id: ListPopup
+#    ScrollView:
+#        size: self.size
+#        canvas.before:
+#            Color:
+#                rgb: (0.0053, 0.1373, 0.2013, 1)
+#            Rectangle:
+#                pos: self.pos
+#                size: self.size
+#        GridLayout:
+#            id: ListGrid
+#            size_hint_y: None
+#            height: self.minimum_height
+#            cols: 1
+#            row_default_height: 50
+
+ScreenManager:
+	transition: RiseInTransition()
+	Screen:
+		name: 'Main'
+		BoxLayout:
+		    orientation: 'vertical'
+		    BoxLayout:
+		        orientation: 'horizontal'
+		        size_hint_y: 0.5
+                TextInput:
+                    id: WordInput
+                    hint_text: 'Enter 5 Letter Word'
+                    size_hint_x: 0.75
+                Button:
+                    text: 'List'
+                    on_release: app.List()
+#            ScrollView:
+#				size: self.size
+#				canvas.before:
+#					Color:
+#						rgb: (0.0053, 0.1373, 0.2013, 1)
+#					Rectangle:
+#						pos: self.pos
+#						size: self.size
+#				GridLayout:
+#					id: ButtonGrid
+#					size_hint_y: None
+#					height: self.minimum_height
+#					cols: 1
+#					row_default_height: 50
