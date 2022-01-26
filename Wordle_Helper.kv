@@ -32,6 +32,8 @@ ScreenManager:
                 TextInput:
                     id: WordInput
                     hint_text: 'Enter 5 Letter Word'
+                    multiline: False
+                    on_text_validate: app.FillButtons()
                 Button:
                     text: 'List'
                     size_hint_x: 0.25
@@ -50,3 +52,111 @@ ScreenManager:
 					height: self.minimum_height
 					cols: 1
 					row_default_height: 50
+					BoxLayout:
+					    orientation: 'horizontal'
+					    id: WordFive
+                        Button:
+                            on_release: app.ButtonColor(4,5)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(3,5)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(2,5)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(1,5)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(0,5)
+                            background_color: [1, 1, 1, 1.0]
+					BoxLayout:
+					    orientation: 'horizontal'
+					    id: WordFour
+                        Button:
+                            on_release: app.ButtonColor(4,4)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(3,4)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(2,4)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(1,4)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(0,4)
+                            background_color: [1, 1, 1, 1.0]
+					BoxLayout:
+					    orientation: 'horizontal'
+					    id: WordThree
+                        Button:
+                            on_release: app.ButtonColor(4,3)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(3,3)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(2,3)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(1,3)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(0,3)
+                            background_color: [1, 1, 1, 1.0]
+					BoxLayout:
+					    orientation: 'horizontal'
+					    id: WordTwo
+                        Button:
+                            on_release: app.ButtonColor(4,2)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(3,2)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(2,2)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(1,2)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(0,2)
+                            background_color: [1, 1, 1, 1.0]
+					BoxLayout:
+					    orientation: 'horizontal'
+					    id: WordOne
+                        Button:
+                            on_release: app.ButtonColor(4,1)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(3,1)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(2,1)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(1,1)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(0,1)
+                            background_color: [1, 1, 1, 1.0]
+                    BoxLayout:
+					    orientation: 'horizontal'
+					    id: WordZero
+                        Button:
+                            on_release: app.ButtonColor(4,0)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(3,0)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(2,0)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(1,0)
+                            background_color: [1, 1, 1, 1.0]
+                        Button:
+                            on_release: app.ButtonColor(0,0)
+                            background_color: [1, 1, 1, 1.0]
