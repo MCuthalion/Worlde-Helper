@@ -73,10 +73,12 @@ class Wordle_Helper(App):
                 df_words = df_words.drop(df_words[df_words.Letter5 != letter[0]].index)
 
         #Quasi Letters
-        df_words.reset_index(drop=False, inplace=True)
+        df_words.reset_index(drop=True, inplace=True)
         for letter in quasiLetter:
+            df_words.reset_index(drop=True, inplace=True)
             if letter[1] == 0:
                 df_words = df_words.drop(df_words[df_words.Letter1 == letter[0]].index)
+                df_words.reset_index(drop=True, inplace=True)
                 i = 0
                 for words in df_words['Word']:
                     if df_words.loc[i, 'Letter2'] == letter[0]:
@@ -92,6 +94,7 @@ class Wordle_Helper(App):
                     i += 1
             elif letter[1] == 1:
                 df_words = df_words.drop(df_words[df_words.Letter2 == letter[0]].index)
+                df_words.reset_index(drop=True, inplace=True)
                 i = 0
                 for words in df_words['Word']:
                     if df_words.loc[i, 'Letter1'] == letter[0]:
@@ -107,6 +110,7 @@ class Wordle_Helper(App):
                     i += 1
             elif letter[1] == 2:
                 df_words = df_words.drop(df_words[df_words.Letter3 == letter[0]].index)
+                df_words.reset_index(drop=True, inplace=True)
                 i = 0
                 for words in df_words['Word']:
                     if df_words.loc[i, 'Letter1'] == letter[0]:
@@ -122,6 +126,7 @@ class Wordle_Helper(App):
                     i += 1
             elif letter[1] == 3:
                 df_words = df_words.drop(df_words[df_words.Letter4 == letter[0]].index)
+                df_words.reset_index(drop=True, inplace=True)
                 i = 0
                 for words in df_words['Word']:
                     if df_words.loc[i, 'Letter1'] == letter[0]:
@@ -137,6 +142,7 @@ class Wordle_Helper(App):
                     i += 1
             elif letter[1] == 4:
                 df_words = df_words.drop(df_words[df_words.Letter5 == letter[0]].index)
+                df_words.reset_index(drop=True, inplace=True)
                 i = 0
                 for words in df_words['Word']:
                     if df_words.loc[i, 'Letter1'] == letter[0]:
@@ -153,6 +159,11 @@ class Wordle_Helper(App):
 
         print(df_words.tail())
 
+        # popup = Popup(size_hint_x=0.5, size_hint_y=0.5, title='', separator_height=0)
+        # for words in df_words:
+        #     label = Label(text=words)
+        #     #root.ids.WordList.add_widget(label)
+        # #open screen
 
         #display popup and print the list
 

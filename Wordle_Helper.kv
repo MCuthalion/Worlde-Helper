@@ -3,25 +3,9 @@
 #:import RiseInTransition kivy.uix.screenmanager.RiseInTransition
 
 
-#Popup:
-#    id: ListPopup
-#    ScrollView:
-#        size: self.size
-#        canvas.before:
-#            Color:
-#                rgb: (0.0053, 0.1373, 0.2013, 1)
-#            Rectangle:
-#                pos: self.pos
-#                size: self.size
-#        GridLayout:
-#            id: ListGrid
-#            size_hint_y: None
-#            height: self.minimum_height
-#            cols: 1
-#            row_default_height: 50
-
 ScreenManager:
 	transition: RiseInTransition()
+
 	Screen:
 		name: 'Main'
 		BoxLayout:
@@ -37,6 +21,7 @@ ScreenManager:
                 Button:
                     text: 'List'
                     size_hint_x: 0.25
+                    #on_press: root.current = 'List'
                     on_release: app.List()
             ScrollView:
 				size: self.size
@@ -160,3 +145,21 @@ ScreenManager:
                         Button:
                             on_release: app.ButtonColor(0,0)
                             background_color: [1, 1, 1, 1.0]
+#    Screen:
+#        name: 'List'
+#        ScrollView:
+#            size: self.size
+#            canvas.before:
+#                Color:
+#                    rgb: (0.0053, 0.1373, 0.2013, 1)
+#                Rectangle:
+#                    pos: self.pos
+#                    size: self.size
+#            GridLayout:
+#                id: ButtonGrid
+#                size_hint_y: None
+#                height: self.minimum_height
+#                cols: 1
+#                row_default_height: 50
+#                BoxLayout:
+#                    id: WordList
