@@ -50,6 +50,8 @@ class Wordle_Helper(App):
         #parse the dataframe
         df_words = pd.DataFrame()
         df_words = df
+
+        #Excluded Letters
         for letter in excludedLetter:
             df_words = df_words.drop(df_words[df_words.Letter1 == letter].index)
             df_words = df_words.drop(df_words[df_words.Letter2 == letter].index)
@@ -57,14 +59,7 @@ class Wordle_Helper(App):
             df_words = df_words.drop(df_words[df_words.Letter4 == letter].index)
             df_words = df_words.drop(df_words[df_words.Letter5 == letter].index)
 
-        for letter in quasiLetter:
-            pass
-            #Letter has to be present in another column but not this one
-            if letter[1] == 0:
-                #drop all rows where letter1 is that letter
-                df_words = df_words.drop(df_words[df_words.Letter1 == letter[0]].index)
-                #Then iterate through the dataframe and drop rows where a letter isn't found
-
+        #Exact Letters
         for letter in exactLetter:
             if letter[1] == 0:
                 df_words = df_words.drop(df_words[df_words.Letter1 != letter[0]].index)
@@ -76,6 +71,85 @@ class Wordle_Helper(App):
                 df_words = df_words.drop(df_words[df_words.Letter4 != letter[0]].index)
             elif letter[1] == 4:
                 df_words = df_words.drop(df_words[df_words.Letter5 != letter[0]].index)
+
+        #Quasi Letters
+        df_words.reset_index(drop=False, inplace=True)
+        for letter in quasiLetter:
+            if letter[1] == 0:
+                df_words = df_words.drop(df_words[df_words.Letter1 == letter[0]].index)
+                i = 0
+                for words in df_words['Word']:
+                    if df_words.loc[i, 'Letter2'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter3'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter4'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter5'] == letter[0]:
+                        pass
+                    else:
+                        df_words = df_words.drop(i)
+                    i += 1
+            elif letter[1] == 1:
+                df_words = df_words.drop(df_words[df_words.Letter2 == letter[0]].index)
+                i = 0
+                for words in df_words['Word']:
+                    if df_words.loc[i, 'Letter1'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter3'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter4'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter5'] == letter[0]:
+                        pass
+                    else:
+                        df_words = df_words.drop(i)
+                    i += 1
+            elif letter[1] == 2:
+                df_words = df_words.drop(df_words[df_words.Letter3 == letter[0]].index)
+                i = 0
+                for words in df_words['Word']:
+                    if df_words.loc[i, 'Letter1'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter2'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter4'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter5'] == letter[0]:
+                        pass
+                    else:
+                        df_words = df_words.drop(i)
+                    i += 1
+            elif letter[1] == 3:
+                df_words = df_words.drop(df_words[df_words.Letter4 == letter[0]].index)
+                i = 0
+                for words in df_words['Word']:
+                    if df_words.loc[i, 'Letter1'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter2'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter3'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter5'] == letter[0]:
+                        pass
+                    else:
+                        df_words = df_words.drop(i)
+                    i += 1
+            elif letter[1] == 4:
+                df_words = df_words.drop(df_words[df_words.Letter5 == letter[0]].index)
+                i = 0
+                for words in df_words['Word']:
+                    if df_words.loc[i, 'Letter1'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter2'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter3'] == letter[0]:
+                        pass
+                    elif df_words.loc[i, 'Letter4'] == letter[0]:
+                        pass
+                    else:
+                        df_words = df_words.drop(i)
+                    i += 1
 
         print(df_words.tail())
 
