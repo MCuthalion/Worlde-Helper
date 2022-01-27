@@ -10,17 +10,84 @@ class Wordle_Helper(App):
 
 
     def build(self):
-        #work with a kivy file to build the gui
+        #initializes the app
         global root
         global wordList
-        wordList = []
+        global df
         root = self.root
+        wordList = []
+        df = pd.DataFrame()
+        df = pd.read_csv('Words.csv')
         root.ids.WordInput.focus = True
 
     def List(self):
         #Generates the list of words still available, populates, and calls the Popup
-        pass
-        print('List Test')
+
+        #Read the letters from the buttons and the colors
+        excludedLetter = []
+        quasiLetter = []
+        exactLetter = []
+        temp = []
+
+        for child in root.ids.ButtonGrid.children:
+            l = 4
+            for kid in child.children:
+                if kid.text != "":
+                    if kid.background_color == [1, 1, 1, 1.0]:
+                        excludedLetter.append(kid.text)
+                    elif kid.background_color == [1, 1, 0, 1.0]:
+                        temp.append(kid.text)
+                        temp.append(l)
+                        quasiLetter.append(temp)
+                        temp = []
+                    elif kid.background_color == [0, 1, 0, 1.0]:
+                        temp.append(kid.text)
+                        temp.append(l)
+                        exactLetter.append(temp)
+                        temp = []
+                l -= 1
+
+        print('Excluded Letters')
+        print(excludedLetter)
+        print('Quasi Letters')
+        print(quasiLetter)
+        print('Exact Letters')
+        print(exactLetter)
+
+        #parse the dataframe
+        df_words = pd.DataFrame()
+        df_words = df
+        for letter in excludedLetter:
+            df_words = df_words.drop(df_words[df_words.Letter1 == letter].index)
+            df_words = df_words.drop(df_words[df_words.Letter2 == letter].index)
+            df_words = df_words.drop(df_words[df_words.Letter3 == letter].index)
+            df_words = df_words.drop(df_words[df_words.Letter4 == letter].index)
+            df_words = df_words.drop(df_words[df_words.Letter5 == letter].index)
+
+        for letter in quasiLetter:
+            pass
+            #Letter has to be present in another column but not this one
+            if letter[1] == 0:
+                #drop all rows where letter1 is that letter
+                df_words = df_words.drop(df_words[df_words.Letter1 == letter[0]].index)
+                #Then iterate through and drop rows where a letter isn't found
+
+        for letter in exactLetter:
+            if letter[1] == 0:
+                df_words = df_words.drop(df_words[df_words.Letter1 != letter[0]].index)
+            elif letter[1] == 1:
+                df_words = df_words.drop(df_words[df_words.Letter2 != letter[0]].index)
+            elif letter[1] == 2:
+                df_words = df_words.drop(df_words[df_words.Letter3 != letter[0]].index)
+            elif letter[1] == 3:
+                df_words = df_words.drop(df_words[df_words.Letter4 != letter[0]].index)
+            elif letter[1] == 4:
+                df_words = df_words.drop(df_words[df_words.Letter5 != letter[0]].index)
+
+        print(df_words.tail())
+
+
+        #display popup and print the list
 
     def ButtonColor(self,x,y):
         #Cycles the button through the color options one click at a time
