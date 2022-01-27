@@ -4,6 +4,9 @@ from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
+from kivy.uix.scrollview import ScrollView
+from kivy.uix.gridlayout import GridLayout
+from kivy.uix.boxlayout import BoxLayout
 
 
 class Wordle_Helper(App):
@@ -159,11 +162,17 @@ class Wordle_Helper(App):
 
         print(df_words.tail())
 
-        # popup = Popup(size_hint_x=0.5, size_hint_y=0.5, title='', separator_height=0)
-        # for words in df_words:
-        #     label = Label(text=words)
-        #     #root.ids.WordList.add_widget(label)
-        # #open screen
+        popup = Popup(size_hint_x=0.5, size_hint_y=0.5, title='', separator_height=0)
+        scrollView = ScrollView(size=root.size)
+        gridLayout = GridLayout(row_default_height=50,cols=1,size_hint_y=None)
+        boxLayout = BoxLayout()
+        gridLayout.add_widget(boxLayout)
+        scrollView.add_widget(gridLayout)
+        popup.add_widget(scrollView)
+        for words in df_words['Word']:
+            label = Label(text=words)
+            boxLayout.add_widget(label)
+        popup.open()
 
         #display popup and print the list
 
