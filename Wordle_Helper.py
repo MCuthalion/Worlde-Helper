@@ -47,13 +47,6 @@ class Wordle_Helper(App):
                         temp = []
                 l -= 1
 
-        print('Excluded Letters')
-        print(excludedLetter)
-        print('Quasi Letters')
-        print(quasiLetter)
-        print('Exact Letters')
-        print(exactLetter)
-
         #parse the dataframe
         df_words = pd.DataFrame()
         df_words = df
@@ -70,7 +63,7 @@ class Wordle_Helper(App):
             if letter[1] == 0:
                 #drop all rows where letter1 is that letter
                 df_words = df_words.drop(df_words[df_words.Letter1 == letter[0]].index)
-                #Then iterate through and drop rows where a letter isn't found
+                #Then iterate through the dataframe and drop rows where a letter isn't found
 
         for letter in exactLetter:
             if letter[1] == 0:
@@ -144,5 +137,9 @@ class Wordle_Helper(App):
     def FocusWidget(self):
         #Focuses the TextInput after Entry
         root.ids.WordInput.focus = True
+
+    def Clear(self):
+        #Clears the button grid and sets all the colors back to grey
+        pass
 
 Wordle_Helper().run()
