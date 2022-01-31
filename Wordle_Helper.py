@@ -162,19 +162,10 @@ class Wordle_Helper(App):
 
         print(df_words.tail())
 
-        popup = Popup(size_hint_x=0.5, size_hint_y=0.5, title='', separator_height=0)
-        scrollView = ScrollView(size=root.size)
-        gridLayout = GridLayout(row_default_height=50,cols=1,size_hint_y=None)
-        boxLayout = BoxLayout()
-        gridLayout.add_widget(boxLayout)
-        scrollView.add_widget(gridLayout)
-        popup.add_widget(scrollView)
+        # display popup and print the list
         for words in df_words['Word']:
             label = Label(text=words)
-            boxLayout.add_widget(label)
-        popup.open()
-
-        #display popup and print the list
+            root.ids.WordList.add_widget(label)
 
     def ButtonColor(self,x,y):
         #Cycles the button through the color options one click at a time
