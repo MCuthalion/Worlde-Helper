@@ -4,13 +4,10 @@ from kivy.app import App
 from kivy.clock import Clock
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
-from kivy.uix.scrollview import ScrollView
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.boxlayout import BoxLayout
-
+from kivy.properties import NumericProperty
 
 class Wordle_Helper(App):
-
+    GridRowHeight = NumericProperty()
 
     def build(self):
         #initializes the app
@@ -160,12 +157,12 @@ class Wordle_Helper(App):
                         df_words = df_words.drop(i)
                     i += 1
 
-        print(df_words.tail())
-
         # display popup and print the list
+        root.ids.WordList.clear_widgets()
         for words in df_words['Word']:
             label = Label(text=words)
             root.ids.WordList.add_widget(label)
+        self.GridRowHeight = len(df_words['Word'])*50
 
     def ButtonColor(self,x,y):
         #Cycles the button through the color options one click at a time
@@ -225,6 +222,51 @@ class Wordle_Helper(App):
 
     def Clear(self):
         #Clears the button grid and sets all the colors back to grey
-        pass
+        wordList.clear()
+        for child in root.ids.ButtonGrid.children:
+            for kid in child.children:
+                kid.text = ""
+                kid.background_color = [1, 1, 1, 1.0]
+        Clock.schedule_once(lambda dt: self.FocusWidget())
+
+    def Delete(self):
+        #Deletes the most recent entry
+        i = 0
+        rowNo = []
+        for child in root.ids.ButtonGrid.children:
+            for kid in child.children:
+                if kid.text != "":
+                    pass
+                    rowNo.append(i)
+            i += 1
+
+        if rowNo[0] == 5:
+            for child in root.ids.WordFive.children:
+                child.text = ""
+                child.background_color = [1, 1, 1, 1.0]
+        elif rowNo[0] == 4:
+            for child in root.ids.WordFour.children:
+                child.text = ""
+                child.background_color = [1, 1, 1, 1.0]
+        elif rowNo[0] == 3:
+            for child in root.ids.WordThree.children:
+                child.text = ""
+                child.background_color = [1, 1, 1, 1.0]
+        elif rowNo[0] == 2:
+            for child in root.ids.WordTwo.children:
+                child.text = ""
+                child.background_color = [1, 1, 1, 1.0]
+        elif rowNo[0] == 1:
+            for child in root.ids.WordOne.children:
+                child.text = ""
+                child.background_color = [1, 1, 1, 1.0]
+        elif rowNo[0] == 0:
+            for child in root.ids.WordZero.children:
+                child.text = ""
+                child.background_color = [1, 1, 1, 1.0]
+
+        x = len(wordList) - 1
+        wordList.pop(x)
+        Clock.schedule_once(lambda dt: self.FocusWidget())
 
 Wordle_Helper().run()

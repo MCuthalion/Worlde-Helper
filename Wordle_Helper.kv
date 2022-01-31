@@ -2,25 +2,6 @@
 #:import Factory kivy.factory.Factory
 #:import RiseInTransition kivy.uix.screenmanager.RiseInTransition
 
-<SimplePopup>:
-    id: listPopup
-    ScrollView:
-        size: self.size
-        canvas.before:
-            Color:
-                rgb: (0.0053, 0.1373, 0.2013, 1)
-            Rectangle:
-                pos: self.pos
-                size: self.size
-        GridLayout:
-            id: ButtonGrid
-            size_hint_y: None
-            height: self.minimum_height
-            cols: 1
-            row_default_height: 50
-            BoxLayout:
-                id: WordList
-
 ScreenManager:
 	transition: RiseInTransition()
 
@@ -164,21 +145,46 @@ ScreenManager:
                         Button:
                             on_release: app.ButtonColor(0,0)
                             background_color: [1, 1, 1, 1.0]
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.25
+                Button:
+                    text: 'Delete'
+                    on_release: app.Delete()
+                Button:
+                    text: 'Clear All'
+                    on_release: app.Clear()
     Screen:
         name: 'List'
-        ScrollView:
-            size: self.size
-            canvas.before:
-                Color:
-                    rgb: (0.0053, 0.1373, 0.2013, 1)
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            GridLayout:
-                size_hint_y: None
-                height: self.minimum_height
-                cols: 1
-                row_default_height: 500
-                BoxLayout:
-                    id: WordList
-                    orientation: 'vertical'
+        BoxLayout:
+            orientation: 'vertical'
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.125
+                Label:
+                    canvas.before:
+                        Color:
+                            rgb: (0.0053, 0.1373, 0.2013, 1)
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                Button:
+                    size_hint_x: 0.5
+                    text: 'Back'
+                    on_release: root.current = 'Main'
+            ScrollView:
+                size: self.size
+                canvas.before:
+                    Color:
+                        rgb: (0.0053, 0.1373, 0.2013, 1)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                GridLayout:
+                    size_hint_y: None
+                    height: self.minimum_height
+                    cols: 1
+                    row_default_height: app.GridRowHeight
+                    BoxLayout:
+                        id: WordList
+                        orientation: 'vertical'
